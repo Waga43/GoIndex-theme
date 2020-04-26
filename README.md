@@ -10,13 +10,13 @@ Combining the power of [Cloudflare Workers](https://workers.cloudflare.com/) and
 ## Demo  
 acrou: [https://oss.achirou.workers.dev/](https://oss.achirou.workers.dev/) 
 
-## 使用
+## How To Use
 
-主题文件在dist目录可以下载下来上传到自己cdn或者使用下面的链接也可以
+Theme files can be downloaded in the dist directory and upload to your own CDN or use the link below
 
-修改goindex的index.js中所使用的app.js为(https://cdn.jsdelivr.net/gh/Aicirou/goindex-theme-acrou/dist/app.mini.js)
+Modify the app.js used in index.js of goindex to (https://cdn.jsdelivr.net/gh/Aicirou/goindex-theme-acrou/dist/app.mini.js)
 
-goindex作者的`index.js`不支持搜索，需要搜索功能请使用[index.js](https://oss.achirou.workers.dev/go2index/index.js?a=view)
+Goindex author's `index.js` does not support search, if you want use the search function, please use [index.js](https://oss.achirou.workers.dev/go2index/index.js?a=view)
 
 ## Deployment  
 1.Install `rclone` software locally  

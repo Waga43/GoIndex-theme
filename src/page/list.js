@@ -8,19 +8,19 @@ var list = Vue.component("list", {
       files: [],
       loading: false,
       columns: [
-        { name: "文件", style: "" },
+        { name: "Name", style: "" },
         {
-          name: "修改时间",
+          name: "Last Modified",
           style: "width:20%",
           class: "is-hidden-mobile is-hidden-touch",
         },
         {
-          name: "大小",
+          name: "Size",
           style: "width:10%",
           class: "is-hidden-mobile is-hidden-touch",
         },
         {
-          name: "下载",
+          name: "Download",
           style: "width:6%",
           class: "is-hidden-mobile is-hidden-touch",
         },
@@ -52,7 +52,7 @@ var list = Vue.component("list", {
             data.hasOwnProperty("error") &&
             data.error.code == "401"
           ) {
-            var pass = prompt("目录加密，请输入密码", "");
+            var pass = prompt("Directory encrypted, please enter the password", "");
             localStorage.setItem("password" + path, pass);
             if (pass != null && pass != "") {
               this.render(path);

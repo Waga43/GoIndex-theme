@@ -48,9 +48,9 @@ var govideo = Vue.component("govideo", {
             <header class="card-header">
                 <p class="card-header-title">
                     <span class="icon"><i class="fa fa-play-circle" aria-hidden="true"></i></span>
-                    播放 /
+                    Play /
                     <span class="icon"><i class="fa fa-download" aria-hidden="true"></i></span>
-                    下载
+                    Download
                 </p>
             </header>
             <div class="card-content">

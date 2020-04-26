@@ -71,7 +71,7 @@ let navbar = Vue.component("navbar", {
                               <div class="navbar-item">
                                   <div class="field is-grouped">
                                       <p class="control has-icons-left" style="width:100%;">
-                                          <input class="input is-rounded has-text-grey" @keyup.enter="query" v-model="param" type="search" placeholder="Search or jump to…">
+                                          <input class="input is-rounded has-text-grey" @keyup.enter="query" v-model="param" type="search" placeholder="Type to search">
                                           <span class="icon is-small is-left">
                                               <i class="fas fa-search"></i>
                                           </span>

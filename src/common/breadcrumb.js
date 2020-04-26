@@ -9,7 +9,7 @@ let breadcrumb = Vue.component("breadcrumb", {
   template: `
           <nav class="breadcrumb is-hidden-mobile is-hidden-touch" aria-label="breadcrumbs">
               <ul>
-                  <li v-show="navs.length>0"><a href="/">首页</a></li>
+                  <li v-show="navs.length>0"><a href="/">Home</a></li>
                   <li v-for="(item,index) in navs" :class="(index+1)==navs.length?'is-active':''">
                       <a v-if="(index+1)==navs.length" aria-current="page" href="#">{{item.title}}</a>
                       <a v-else :href="item.path">{{item.title}}</a>
