@@ -77,13 +77,7 @@ let navbar = Vue.component("navbar", {
                                           </span>
                                       </p>
                                   </div>
-                              </div>
-                              <!--<a class="navbar-item" target="_blank">
-                                  <i class="fa fa-question-circle" aria-hidden="true"></i>
-                              </a>-->
-                              <a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/Aicirou/goindex-theme-acrou">
-                                <i class="fab fa-github"></i> 
-                              </a>
+                              </div>    
                           </div>
                       </div>
                   </div>
