@@ -7,7 +7,7 @@ let breadcrumb = Vue.component("breadcrumb", {
     };
   },
   template: `
-          <nav class="breadcrumb is-hidden-mobile is-hidden-touch" aria-label="breadcrumbs">
+          <nav class="breadcrumb" aria-label="breadcrumbs">
               <ul>
                   <li v-show="navs.length>0"><a href="/">Home</a></li>
                   <li v-for="(item,index) in navs" :class="(index+1)==navs.length?'is-active':''">
