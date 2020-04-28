@@ -16,12 +16,12 @@ var list = Vue.component("list", {
         },
         {
           name: "Size",
-          style: "width:10%",
+          style: "width:12%",
           class: "is-hidden-mobile is-hidden-touch",
         },
         {
           name: "Download",
-          style: "width:6%",
+          style: "width:10%",
           class: "is-hidden-mobile is-hidden-touch",
         },
       ],
@@ -162,6 +162,7 @@ var list = Vue.component("list", {
           </tr>
           </tbody>
       </table>
+    </div>
     `,
 });
 
