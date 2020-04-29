@@ -1,5 +1,20 @@
 import axios from "./axios";
 
+const exts = ["html", "php", "css", "go", "java", "js", "json", "py", "txt", "sh", "md", "mp4", "webm", "mkv", "bmp", "jpg", "jpeg", "png", "gif"];
+
+
+export const checkoutPath = (path, file) => {
+  var ext = path.split(".").pop();
+  if (exts.indexOf(`${ext}`) >= 0) {
+    path += "?a=view";
+  } else {
+    if (file.mimeType === "application/vnd.google-apps.folder") {
+      path += "/";
+    }
+  }
+  return path
+}
+
 export const getQueryString = (path, param) => {
   if (!path) {
     return "";
@@ -10,13 +25,12 @@ export const getQueryString = (path, param) => {
 
 export const getURLParameters = (url) =>
   url
-    .match(/([^?=&]+)(=([^&]*))/g)
-    .reduce(
-      (a, v) => (
-        (a[v.slice(0, v.indexOf("="))] = v.slice(v.indexOf("=") + 1)), a
-      ),
-      {}
-    );
+  .match(/([^?=&]+)(=([^&]*))/g)
+  .reduce(
+    (a, v) => (
+      (a[v.slice(0, v.indexOf("="))] = v.slice(v.indexOf("=") + 1)), a
+    ), {}
+  );
 
 // console.log(getURLParameters("/Movies/xx.mp4?a=view&y=123"));
 
