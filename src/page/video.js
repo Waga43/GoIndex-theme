@@ -68,7 +68,7 @@ var govideo = Vue.component("govideo", {
             <div class="card-content">
                 <div class="content">
                   <div class="field">
-                    <label class="label">下载地址</label>
+                    <label class="label">Download link</label>
                     <div class="control">
                       <input class="input" type="text" :value="decodeURIComponent(videourl)">
                     </div>

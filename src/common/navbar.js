@@ -10,7 +10,7 @@ let navbar = Vue.component("navbar", {
         };
       });
       
-      // 当前所在盘
+      // Current drive
       this.currgd = localStorage.getItem("currgd") ?
           JSON.parse(localStorage.getItem("currgd")) :
           this.gds[0];
@@ -28,7 +28,7 @@ let navbar = Vue.component("navbar", {
         }
       }
 
-      // 回显搜索参数
+      // Echo search parameters
       if (window.MODEL) {
         this.param = window.MODEL.q ? window.MODEL.q : "";
       }

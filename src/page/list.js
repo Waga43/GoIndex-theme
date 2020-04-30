@@ -70,7 +70,7 @@ var list = Vue.component("list", {
         .then((res) => {
           let body = res.data;
           if (body) {
-            // 判断响应状态
+            // Determine response status
             if (body.error && body.error.code == "401") {
               this.checkPassword(path);
               return;
@@ -120,7 +120,7 @@ var list = Vue.component("list", {
         });
     },
     checkPassword (path) {
-      var pass = prompt("目录加密，请输入密码", "");
+      var pass = prompt("Directory encryption, please enter the password ", "");
       localStorage.setItem("password" + path, pass);
       if (pass != null && pass != "") {
         this.render(path);
