@@ -162,6 +162,8 @@ var list = Vue.component("list", {
           </tr>
           </tbody>
       </table>
+      <div v-show="files.length==0" class="has-text-centered no-content">
+      </div>
     </div>
     `,
 });
