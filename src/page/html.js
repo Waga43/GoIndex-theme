@@ -36,7 +36,7 @@ var gohtml = Vue.component("gohtml", {
         <iframe id="iframe" frameborder="0" scrolling="no" width="100%" :srcdoc="content"></iframe>
         <div :class="'pageloader'+(loading?' is-active':'')">
             <span class="title">
-                该功能目前处于测试阶段，欢迎大家提建议<i class="fab fa-github"></i>
+            This feature is currently in the testing stage, suggestions are welcome<i class="fab fa-github"></i>
             </span>
         </div>
     </div>
