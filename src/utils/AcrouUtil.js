@@ -23,7 +23,7 @@ const exts = [
 ];
 
 export const checkoutPath = (path, file) => {
-  // 解决/css这种也会匹配的问题
+  // fix problem that CSS will also match
   var ext = path.split(".").length > 1 ? path.split(".").pop() : "";
   if (exts.indexOf(`${ext}`) >= 0) {
     path += "?a=view";
