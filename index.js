@@ -1,7 +1,7 @@
 var authConfig = {
     "siteName": "GoIndex", // site name
     "root_pass": "",  // Root password, takes precedence over .password
-    "version" : "1.12", // version
+    "version" : "1.14", // version
     "theme" : "acrou",
     /*"client_id": "202264815644.apps.googleusercontent.com",
     "client_secret": "X4Z3ca8xfWDb1Voo-F9a7ZxJ",*/
