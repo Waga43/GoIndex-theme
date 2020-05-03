@@ -1,14 +1,11 @@
-var authConfig = {
-    "siteName": "GoIndex", // site name
-    "root_pass": "",  // Root password, takes precedence over .password
-    "version" : "1.14", // version
-    "theme" : "acrou",
-    /*"client_id": "202264815644.apps.googleusercontent.com",
-    "client_secret": "X4Z3ca8xfWDb1Voo-F9a7ZxJ",*/
+self.props = {
+    siteName: 'GoIndex', // site name
+    version: '1.14', // version
+    theme: 'acrou',
     // Highly recommend using your own client_id and client_secret
-    "client_id": "",
-    "client_secret": "",
-    "refresh_token": "", // Authorize token
+    client_id: '202264815644.apps.googleusercontent.com',
+	client_secret: 'X4Z3ca8xfWDb1Voo-F9a7ZxJ',
+    refresh_token: '',
     /**
      * Set up multiple Drives to display; add multiples by format
      *   id: can be team drive id, subfolder id, or "root" (representing the root directory of personal drive);
@@ -17,24 +14,24 @@ var authConfig = {
      * [Note] For the drive whose id is set to the subfolder id,
      * the search function will not be supported (it does not affect other drive).
      */
-    "roots": [
+    roots: [
         {
-            id: "root",
-            name: "MyDrive",
-            pass: "",
+            id: 'root',
+            name: 'MyDrive',
+            pass: '',
         },
         {
-          id: "drive_id",
-          name: "TeamDrive",
-          pass: "",
+          id: 'drive_id',
+          name: 'TeamDrive',
+          pass: '',
         },
         {
-          id: "folder_id",
-          name: "folder1",
-          pass: "",
+          id: 'folder_id',
+          name: 'folder1',
+          pass: '',
         }
     ],
-    "default_gd": 0,
+    default_gd: 0,
     /**
      *   The number displayed on each page of the file list page. 
      *   [Recommended setting value is between 100 and 1000];
@@ -45,7 +42,7 @@ var authConfig = {
      * Another effect of this value, if the number of files in the directory is greater than this setting value 
      * (that is, multiple pages need to be displayed), the results of the first listing directory will be cached.
      */
-    "files_list_page_size": 20,
+    files_list_page_size: 20,
     /**
      *   The number displayed on each page of the search results page. 
      *   [Recommended setting value is between 50 and 1000];
@@ -55,7 +52,7 @@ var authConfig = {
      *   (page loading) of the scroll bar of the search results page to fail;
      * The size of this value affects the response speed of the search operation.
      */
-    "search_result_list_page_size": 50
+    search_result_list_page_size: 50
 };
 
 /**
@@ -101,15 +98,15 @@ function html(current_drive_order = 0, model = {}) {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
-  <title>${authConfig.siteName}</title>
+  <title>${self.props.siteName}</title>
 
   <script>
-    window.gdconfig = JSON.parse('${JSON.stringify({version: authConfig.version})}');
-    window.gds = JSON.parse('${JSON.stringify(authConfig.roots.map(it => it.name))}');
+    window.gdconfig = JSON.parse('${JSON.stringify({version: self.props.version})}');
+    window.gds = JSON.parse('${JSON.stringify(self.props.roots.map(it => it.name))}');
     window.MODEL = JSON.parse('${JSON.stringify(model)}');
     window.current_drive_order = ${current_drive_order};
   </script>
-  <script src="https://cdn.jsdelivr.net/gh/ReAlpha39/goindex-theme-acrou@${authConfig.version}/dist/app.mini.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/ReAlpha39/goindex-theme-acrou@${self.props.version}/dist/app.mini.js"></script>
 </head>
 <body>
 </body>
@@ -127,7 +124,7 @@ addEventListener('fetch', event => {
  */
 async function handleRequest(request) {
     if (gds.length === 0) {
-        for (let i = 0; i < authConfig.roots.length; i++) {
+        for (let i = 0; i < self.props.roots.length; i++) {
             const gd = new googleDrive(authConfig, i);
             await gd.init();
             gds.push(gd)
@@ -153,7 +150,7 @@ async function handleRequest(request) {
      * @returns {Response}
      */
     function redirectToIndexPage() {
-        return new Response('', {status: 301, headers: {'Location': `/${authConfig.default_gd}:/`}});
+        return new Response('', {status: 301, headers: {'Location': `/${self.props.default_gd}:/`}});
     }
 
     if (path == '/') return redirectToIndexPage();
@@ -302,7 +299,7 @@ class googleDrive {
     constructor(authConfig, order) {
         // Each drive corresponds to an order, corresponding to a gd instance
         this.order = order;
-        this.root = authConfig.roots[order];
+        this.root = self.props.roots[order];
         this.url_path_prefix = `/${order}:`;
         this.authConfig = authConfig;
         // TODO: The invalid refresh strategy of these caches can be formulated later
@@ -330,17 +327,17 @@ class googleDrive {
         await this.accessToken();
         /*await (async () => {
             // Get only 1 time
-            if (authConfig.user_drive_real_root_id) return;
+            if (self.props.user_drive_real_root_id) return;
             const root_obj = await (gds[0] || this).findItemById('root');
             if (root_obj && root_obj.id) {
-                authConfig.user_drive_real_root_id = root_obj.id
+                self.props.user_drive_real_root_id = root_obj.id
             }
         })();*/
         // Wait for user_drive_real_root_id and only get it once
-        if (authConfig.user_drive_real_root_id) return;
+        if (self.props.user_drive_real_root_id) return;
         const root_obj = await (gds[0] || this).findItemById('root');
         if (root_obj && root_obj.id) {
-            authConfig.user_drive_real_root_id = root_obj.id
+            self.props.user_drive_real_root_id = root_obj.id
         }
     }
 
@@ -351,7 +348,7 @@ class googleDrive {
     async initRootType() {
         const root_id = this.root['id'];
         const types = CONSTS.gd_root_type;
-        if (root_id === 'root' || root_id === authConfig.user_drive_real_root_id) {
+        if (root_id === 'root' || root_id === self.props.user_drive_real_root_id) {
             this.root_type = types.user_drive;
         } else {
             const obj = await this.getShareDriveObjById(root_id);
@@ -441,7 +438,7 @@ class googleDrive {
         params.q = `'${parent}' in parents and trashed = false AND name !='.password'`;
         params.orderBy = 'folder,name,modifiedTime desc';
         params.fields = "nextPageToken, files(id, name, mimeType, size , modifiedTime)";
-        params.pageSize = this.authConfig.files_list_page_size;
+        params.pageSize = this.self.props.files_list_page_size;
 
         if (page_token) {
             params.pageToken = page_token;
@@ -556,7 +553,7 @@ class googleDrive {
         }
         params.q = `trashed = false AND name !='.password' AND (${name_search_str})`;
         params.fields = "nextPageToken, files(id, name, mimeType, size , modifiedTime)";
-        params.pageSize = this.authConfig.search_result_list_page_size;
+        params.pageSize = this.self.props.search_result_list_page_size;
         // params.orderBy = 'folder,name,modifiedTime desc';
 
         let url = 'https://www.googleapis.com/drive/v3/files';
@@ -589,7 +586,7 @@ class googleDrive {
     async findParentFilesRecursion(child_id, contain_myself = true) {
         const gd = this;
         const gd_root_id = gd.root.id;
-        const user_drive_real_root_id = authConfig.user_drive_real_root_id;
+        const user_drive_real_root_id = self.props.user_drive_real_root_id;
         const is_user_drive = gd.root_type === CONSTS.gd_root_type.user_drive;
 
         // End point query id from bottom to top
@@ -724,14 +721,14 @@ class googleDrive {
 
     async accessToken() {
         console.log("accessToken");
-        if (this.authConfig.expires == undefined || this.authConfig.expires < Date.now()) {
+        if (this.self.props.expires == undefined || this.self.props.expires < Date.now()) {
             const obj = await this.fetchAccessToken();
             if (obj.access_token != undefined) {
-                this.authConfig.accessToken = obj.access_token;
-                this.authConfig.expires = Date.now() + 3500 * 1000;
+                this.self.props.accessToken = obj.access_token;
+                this.self.props.expires = Date.now() + 3500 * 1000;
             }
         }
-        return this.authConfig.accessToken;
+        return this.self.props.accessToken;
     }
 
     async fetchAccessToken() {
@@ -741,9 +738,9 @@ class googleDrive {
             'Content-Type': 'application/x-www-form-urlencoded'
         };
         const post_data = {
-            'client_id': this.authConfig.client_id,
-            'client_secret': this.authConfig.client_secret,
-            'refresh_token': this.authConfig.refresh_token,
+            'client_id': this.self.props.client_id,
+            'client_secret': this.self.props.client_secret,
+            'refresh_token': this.self.props.refresh_token,
             'grant_type': 'refresh_token'
         }
 
