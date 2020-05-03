@@ -16,19 +16,19 @@ self.props = {
      */
     roots: [
         {
-            id: 'root',
+            default_id: 'root',
             name: 'MyDrive',
             pass: '',
         },
         {
-          id: 'drive_id',
-          name: 'TeamDrive',
-          pass: '',
+            default_id: 'drive_id',
+            name: 'TeamDrive',
+            pass: '',
         },
         {
-          id: 'folder_id',
-          name: 'folder1',
-          pass: '',
+            default_id: 'folder_id',
+            name: 'folder1',
+            pass: '',
         }
     ],
     default_gd: 0,
@@ -311,8 +311,8 @@ class googleDrive {
         this.passwords = [];
         // id <-> path
         this.id_path_cache = {};
-        this.id_path_cache[this.root['id']] = '/';
-        this.paths["/"] = this.root['id'];
+        this.id_path_cache[this.root['default_id']] = '/';
+        this.paths["/"] = this.root['default_id'];
         if (this.root['pass'] != "") {
             this.passwords['/'] = this.root['pass'];
         }
@@ -346,7 +346,7 @@ class googleDrive {
      * @returns {Promise<void>}
      */
     async initRootType() {
-        const root_id = this.root['id'];
+        const root_id = this.root['default_id'];
         const types = CONSTS.gd_root_type;
         if (root_id === 'root' || root_id === self.props.user_drive_real_root_id) {
             this.root_type = types.user_drive;
