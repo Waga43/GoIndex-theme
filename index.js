@@ -125,7 +125,7 @@ addEventListener('fetch', event => {
 async function handleRequest(request) {
     if (gds.length === 0) {
         for (let i = 0; i < self.props.roots.length; i++) {
-            const gd = new googleDrive(authConfig, i);
+            const gd = new googleDrive(self.props, i);
             await gd.init();
             gds.push(gd)
         }
