@@ -25,7 +25,7 @@ var list = Vue.component("list", {
           class: "is-hidden-mobile is-hidden-touch",
         },
         {
-          name: "Download",
+          name: "Actions",
           style: "width:10%",
           class: "is-hidden-mobile is-hidden-touch",
         },
