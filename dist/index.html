@@ -1,0 +1,18 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Achirou's Cloud</title><script>var authConfig = {
+        "version" : "1.0.0", 
+        roots: [
+          {
+            id: "team",
+            name: "TeamDrive",
+            pass: "",
+          },
+          {
+            id: "root",
+            name: "PriveDrive",
+            pass: "",
+          }
+        ],
+      };
+      // window.gdconfig = JSON.parse(JSON.stringify({version: authConfig.version}));
+      window.gds = JSON.parse(JSON.stringify(authConfig.roots.map(it => it.name)));
+      window.current_drive_order = 0;</script><script src="app.mini.js"></script></head><body></body></html>
