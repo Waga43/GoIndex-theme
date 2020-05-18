@@ -7,7 +7,7 @@ let breadcrumb = Vue.component("breadcrumb", {
     };
   },
   template: `
-          <nav class="breadcrumb is-hidden-mobile is-hidden-touch" aria-label="breadcrumbs">
+          <nav class="breadcrumb" aria-label="breadcrumbs">
               <ul>
                   <li v-for="(item,index) in navs" :class="(index+1)==navs.length?'is-active':''">
                       <a v-if="(index+1)==navs.length" aria-current="page" href="#">{{item.title}}</a>
@@ -18,7 +18,7 @@ let breadcrumb = Vue.component("breadcrumb", {
       `,
   methods: {
     render(path) {
-      // 如果是搜索不进行渲染
+      // If search, it will not be rendered
       if (path.match("/[0-9]+:search")) {
         return;
       }
@@ -34,7 +34,7 @@ let breadcrumb = Vue.component("breadcrumb", {
           n = decodeURI(n);
           p += n + "/";
           if (p.match("/[0-9]+:/")[0] === p) {
-            n = "首页";
+            n = "Home";
           }
           navs.push({
             path: p,
@@ -42,7 +42,7 @@ let breadcrumb = Vue.component("breadcrumb", {
           });
         }
         this.navs = navs;
-        if (navs.length == 1 && navs[0].title === "首页") {
+        if (navs.length == 1 && navs[0].title === "Home") {
           this.navs = [];
         }
       }

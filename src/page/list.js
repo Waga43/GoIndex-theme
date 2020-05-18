@@ -13,19 +13,19 @@ var list = Vue.component("list", {
       files: [],
       loading: false,
       columns: [
-        { name: "文件", style: "" },
+        { name: "Name", style: "" },
         {
-          name: "修改时间",
+          name: "Last Modified",
           style: "width:20%",
           class: "is-hidden-mobile is-hidden-touch",
         },
         {
-          name: "大小",
-          style: "width:10.5%",
+          name: "Size",
+          style: "width:12%",
           class: "is-hidden-mobile is-hidden-touch",
         },
         {
-          name: "操作",
+          name: "Actions",
           style: "width:10%",
           class: "is-hidden-mobile is-hidden-touch",
         },
@@ -70,7 +70,7 @@ var list = Vue.component("list", {
         .then((res) => {
           let body = res.data;
           if (body) {
-            // 判断响应状态
+            // Determine response status
             if (body.error && body.error.code == "401") {
               this.checkPassword(path);
               return;
@@ -120,7 +120,7 @@ var list = Vue.component("list", {
         });
     },
     checkPassword (path) {
-      var pass = prompt("目录加密，请输入密码", "");
+      var pass = prompt("Directory is password protected, please enter the password ", "");
       localStorage.setItem("password" + path, pass);
       if (pass != null && pass != "") {
         this.render(path);

@@ -47,7 +47,7 @@ var searchmodel = Vue.component("searchmodel", {
             <div class="modal-card">
                 <section class="modal-card-body" style="border-radius: 20px;">
                     <center>
-                        <h1 class="title is-5">正在获取目标路径...</h1>
+                        <h1 class="title is-5">Getting item path...</h1>
                         <i class="fa fa-spinner fa-pulse fa-2x fa-fw"></i>
                         <span class="sr-only">Loading...</span>
                     </center>

@@ -23,7 +23,7 @@ const exts = [
 ];
 
 export const checkoutPath = (path, file) => {
-  // 解决/css这种也会匹配的问题
+  // fix problem that CSS will also match
   var ext = path.split(".").length > 1 ? path.split(".").pop() : "";
   if (exts.indexOf(`${ext}`) >= 0) {
     path += "?a=view";
@@ -83,25 +83,25 @@ export function get_filex(path, callback) {
   });
 }
 
-//时间转换
+//Time conversion
 export function utc2beijing(utc_datetime) {
-  // 转为正常的时间格式 年-月-日 时:分:秒
+  // Convert to normal time format year-month-day hour: minute: second
   var T_pos = utc_datetime.indexOf("T");
   var Z_pos = utc_datetime.indexOf("Z");
   var year_month_day = utc_datetime.substr(0, T_pos);
   var hour_minute_second = utc_datetime.substr(T_pos + 1, Z_pos - T_pos - 1);
   var new_datetime = year_month_day + " " + hour_minute_second; // 2017-03-31 08:02:06
 
-  // 处理成为时间戳
+  // Process to timestamp
   var timestamp = new Date(Date.parse(new_datetime));
   timestamp = timestamp.getTime();
   timestamp = timestamp / 1000;
 
-  // 增加8个小时，北京时间比utc时间多八个时区
+  // 8 hours more, Beijing time is eight more time zones than UTC time
   var unixtimestamp = timestamp + 8 * 60 * 60;
 
-  // 时间戳转为时间
-  unixtimestamp = new Date(unixtimestamp * 1000);
+  // Timestamp to time
+  var unixtimestamp = new Date(unixtimestamp * 1000);
   var year = 1900 + unixtimestamp.getYear();
   var month = "0" + (unixtimestamp.getMonth() + 1);
   var date = "0" + unixtimestamp.getDate();

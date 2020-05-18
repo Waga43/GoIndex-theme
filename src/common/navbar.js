@@ -10,7 +10,7 @@ let navbar = Vue.component("navbar", {
         };
       });
       
-      // 当前所在盘
+      // Current drive
       this.currgd = localStorage.getItem("currgd") ?
           JSON.parse(localStorage.getItem("currgd")) :
           this.gds[0];
@@ -28,7 +28,7 @@ let navbar = Vue.component("navbar", {
         }
       }
 
-      // 回显搜索参数
+      // Echo search parameters
       if (window.MODEL) {
         this.param = window.MODEL.q ? window.MODEL.q : "";
       }
@@ -96,19 +96,13 @@ let navbar = Vue.component("navbar", {
                               <div class="navbar-item">
                                   <div class="field is-grouped">
                                       <p class="control has-icons-left" style="width:100%;">
-                                          <input class="input is-rounded has-text-grey" @keyup.enter="query" v-model="param" type="search" placeholder="Search or jump to…">
+                                          <input class="input is-rounded has-text-grey" @keyup.enter="query" v-model="param" type="search" placeholder="Type to search">
                                           <span class="icon is-small is-left">
                                               <i class="fas fa-search"></i>
                                           </span>
                                       </p>
                                   </div>
-                              </div>
-                              <!--<a class="navbar-item" target="_blank">
-                                  <i class="fa fa-question-circle" aria-hidden="true"></i>
-                              </a>-->
-                              <a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/Aicirou/goindex-theme-acrou">
-                                <i class="fab fa-github"></i> 
-                              </a>
+                              </div>    
                           </div>
                       </div>
                   </div>
