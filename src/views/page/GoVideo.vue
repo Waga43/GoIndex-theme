@@ -17,15 +17,13 @@
     <div class="card">
       <header class="card-header">
         <p class="card-header-title">
-          <span class="icon">
-            <i class="fa fa-play-circle" aria-hidden="true"></i>
-          </span>
-          {{ $t("page.video.play") }} /
+	<a :href="videourl">
           <span class="icon">
             <i class="fa fa-download" aria-hidden="true"></i>
           </span>
           {{ $t("page.video.download") }}
         </p>
+	</a>
       </header>
       <div class="card-content">
         <div class="content">
@@ -71,7 +69,7 @@ export default {
       // 便于开发环境调试
       this.videourl = window.location.origin + encodeURI(this.url);
       this.apiurl =
-        "https://api.jsonpop.cn/demo/blplyaer/?url=" + this.videourl;
+        "https://onelineplayer.com/player.html?autoplay=false&poster=&time=true&progressBar=true&overlay=true&muteButton=true&fullscreenButton=true&style=light&quality=auto&playButton=true&url=" + this.videourl;
     },
   },
   activated() {
@@ -100,16 +98,6 @@ export default {
           name: "VLC",
           icon: "https://cloud.jsonpop.cn/go2index/player/vlc.png",
           scheme: "vlc://" + this.videourl,
-        },
-        {
-          name: "Thunder",
-          icon: "https://cloud.jsonpop.cn/go2index/player/thunder.png",
-          scheme: "thunder://" + this.getThunder,
-        },
-        {
-          name: "Aria2",
-          icon: "https://cloud.jsonpop.cn/go2index/player/aria2.png",
-          scheme: 'javascript:alert("暂未实现")',
         },
         {
           name: "nPlayer",
